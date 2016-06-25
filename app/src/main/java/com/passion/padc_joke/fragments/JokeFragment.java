@@ -11,22 +11,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.passion.padc_joke.R;
+import com.passion.padc_joke.data.models.JokeModel;
+import com.passion.padc_joke.data.vos.JokeVO;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class JokeFragment extends Fragment {
 
-    private int mJokeNameResId;
-    private int mImageResId;
-    private int mJokeResId;
+    private static final String BARG_JOKE_INDEX = "BARG_JOKE_INDEX";
 
-    public static JokeFragment newInstance(int jokeNameResId, int imageResId, int jokeResId) {
+    private int jokeIndex;
+    private JokeVO joke;
+
+    public static JokeFragment newInstance(int jokeIndex) {
         JokeFragment fragment = new JokeFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("joke_name_key", jokeNameResId);
-        bundle.putInt("image_key", imageResId);
-        bundle.putInt("joke_key", jokeResId);
+        bundle.putInt(BARG_JOKE_INDEX, jokeIndex);
         fragment.setArguments(bundle);
         return fragment;
     }
@@ -36,9 +37,8 @@ public class JokeFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            mJokeNameResId = bundle.getInt("joke_name_key");
-            mImageResId = bundle.getInt("image_key");
-            mJokeResId = bundle.getInt("joke_key");
+            jokeIndex = bundle.getInt(BARG_JOKE_INDEX);
+            joke = JokeModel.getInstance().getJoke(jokeIndex);
         }
     }
 
@@ -48,13 +48,14 @@ public class JokeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_joke, container, false);
 
         TextView tvJokeName = (TextView) view.findViewById(R.id.tv_joke_name);
-        tvJokeName.setText(getResources().getString(mJokeNameResId));
+        tvJokeName.setText(joke.getJokeTitle());
 
         ImageView ivJokeImage = (ImageView) view.findViewById(R.id.iv_joke_image);
-        ivJokeImage.setImageDrawable(ContextCompat.getDrawable(getContext(), mImageResId));
+        ivJokeImage.setImageDrawable(ContextCompat.getDrawable(getContext(), joke.getJokeImage()));
+        // ivJokeImage.setImageResource(joke.getJokeImage());
 
         TextView tvJoke = (TextView) view.findViewById(R.id.tv_joke);
-        tvJoke.setText(getResources().getString(mJokeResId));
+        tvJoke.setText(joke.getJokeContent());
 
         return view;
     }
