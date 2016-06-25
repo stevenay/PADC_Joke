@@ -51,17 +51,17 @@
                 android:layout_marginRight="@dimen/margin_medium_2"
                 android:orientation="horizontal">
 
-                <RadioButton
+                <com.passion.padc_joke.components.radiobuttons.MMRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/margin_medium"
-                    android:text="အရမ်းရီရတယ်"/>
+                    android:text="@string/lbl_very_funny"/>
 
-                <RadioButton
+                <com.passion.padc_joke.components.radiobuttons.MMRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="@dimen/margin_medium"
-                    android:text="ရီရတယ်"/>
+                    android:text="@string/lbl_funny"/>
             </RadioGroup>
 
             <LinearLayout
@@ -69,17 +69,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right">
 
-                <Button
+                <com.passion.padc_joke.components.buttons.MMButton
                     android:id="@+id/btn_previous"
                     android:layout_width="120dp"
                     android:layout_height="48dp"
-                    android:text="အရင်ဟာပြပါ"/>
+                    android:text="@string/lbl_previous_joke"/>
 
-                <Button
+                <com.passion.padc_joke.components.buttons.MMButton
                     android:id="@+id/btn_next"
                     android:layout_width="120dp"
                     android:layout_height="48dp"
-                    android:text="နောက်တစ်ခု"/>
+                    android:text="@string/lbl_next_joke"/>
 
             </LinearLayout>
         </LinearLayout>
